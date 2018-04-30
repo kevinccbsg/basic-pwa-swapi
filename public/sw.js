@@ -6,6 +6,11 @@ if (workbox) {
   console.log(`Boo! Workbox didn't load 😬`);
 }
 
+workbox.core.setCacheNameDetails({
+  prefix: 'my-app',
+  suffix: 'v1'
+});
+
 workbox.precaching.precacheAndRoute([
   {
     "url": "app.js",

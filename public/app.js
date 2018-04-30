@@ -1,10 +1,6 @@
 
 const main = document.getElementById('root');
 
-window.addEventListener('load', e => {
-  updateCharacters();
-});
-
 const articleDataHTML = (data) => {
   return `
     <div>
@@ -32,3 +28,19 @@ const updateCharacters = async () => {
     console.error(err);
   }
 };
+
+window.addEventListener('load', e => {
+  updateCharacters();
+  if ('serviceWorker' in navigator) {
+    try {
+      navigator.serviceWorker.register('/sw.js');
+      console.log(`SW registered`);
+    } catch (e) {
+      console.log(`SW registered failed`);
+      console.error(e);
+    }
+  } else {
+    console.warn('service worker not supported');
+  }
+});
+

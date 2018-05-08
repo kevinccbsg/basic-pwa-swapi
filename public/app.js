@@ -3,10 +3,10 @@ const main = document.getElementById('root');
 
 const articleDataHTML = (data) => {
   return `
-    <div>
+    <div class="character">
       <h2>${data.name}</h2>
       <div>
-        <ul>
+        <ul class="character-list">
           <li>height: ${data.height}</li>
           <li>gender: ${data.gender}</li>
           <li>birth year: ${data.birth_year}</li>

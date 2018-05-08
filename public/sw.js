@@ -8,7 +8,7 @@ if (workbox) {
 
 workbox.core.setCacheNameDetails({
   prefix: 'my-app',
-  suffix: 'v1'
+  suffix: 'v2'
 });
 
 workbox.precaching.precacheAndRoute([
@@ -57,10 +57,6 @@ workbox.precaching.precacheAndRoute([
     "revision": "1e66c7c67bce94e934369405e1fcd7b7"
   },
   {
-    "url": "styles.css",
-    "revision": "f944db4bd52a8c7022daed298a531038"
-  },
-  {
     "url": "workbox-config.js",
     "revision": "5f0217b08cf31f2143d86d2bd742dd56"
   }
@@ -78,8 +74,23 @@ workbox.routing.registerRoute(
   workbox.strategies.staleWhileRevalidate({
     // Use a custom cache name
     cacheName: 'css-cache',
+    plugins: [
+      new workbox.broadcastUpdate.Plugin('css-cache')
+    ],
   })
 );
+
+const updatesChannel = new BroadcastChannel('css-cache');
+updatesChannel.addEventListener('message', async (event) => {
+  const {cacheName, updatedUrl} = event.data.payload;
+
+  // Do something with cacheName and updatedUrl.
+  // For example, get the cached content and update
+  // the content on the page.
+  const cache = await caches.open(cacheName);
+  const updatedResponse = await cache.match(updatedUrl);
+  const updatedText = await updatedResponse.text();
+});
 
 workbox.routing.registerRoute(
   // Cache image files

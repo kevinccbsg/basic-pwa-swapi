@@ -1,22 +1,30 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
-  margin: 8px;
+  margin: 0;
+  padding: 0;
+  background-color: #080810;
 }
 
 h1 {
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 300; 
 }
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
+  background-color: #1c1e22;
+  text-align: center;
+  padding: 20px 0;
+  color: #FFE300;
 }
 
 main {
+  margin: 30px 10px;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -24,16 +32,28 @@ main {
   grid-auto-flow: row dense;
 }
 
-.article h2 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+.character {
+  border: 1px solid #FFE300;
+  border-radius: 5px;
+  color: #FFF;
+  text-align: center;
 }
 
-.article a,
-.article a:visited {
-  text-decoration: none;
-  color: inherit;
+.character h2 {
+  margin: 0;
+  color: #FFE300;
+  padding: 15px;
+  background-color: #1d1e23;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.article img {
-  width: 100%;
+.character .character-list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.character .character-list > li {
+  padding: 5px 15px;
 }
